@@ -6,9 +6,12 @@ import Locations from '../components/settings/locations';
 
 const ApplicationNavigator = new StackNavigator({
     Weather: {
-        screen: Weather
+        screen: Weather,
+        navigationOptions: {
+            header: null
+        }
     },
-    SettingsNavigator:{
+    Settings:{
         screen: Settings
     },
     Locations: {

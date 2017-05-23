@@ -13,8 +13,7 @@ const service = new LocationService();
 function initaliseLocations() {
   return (dispatch: any) => {
     service.initialise().then(
-      (result) => {
-        debugger;
+      () => {
         dispatch({
           type: 'LOCATION_INITIALISED'
         });

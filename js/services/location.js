@@ -23,7 +23,7 @@ class LocationService {
         const context = realm.current();
         try {
             const locations = context.objects('Location');
-            debugger;
+
             if (locations.length > 0) {
                 return;
             }
@@ -31,7 +31,6 @@ class LocationService {
             for (var i = 0; i < defaultLocations.length; i++) {
                 const location = defaultLocations[i];
                 const openWeatherId = await this.getLocationIdFromApi(location.name);
-
                 context.write(() => {
                     context.create('Location', {
                         name: location.name,
@@ -132,14 +131,11 @@ class LocationService {
 
     async getLocationIdFromApi(location:string) {
         const url = `${weatherApiUrl}/find?q=${location},AU&type=accurate&units=metric&appid=${weatherApiKey}`;
-
         try {
             const response = await fetch(url);
             const result = await response.json();
-
             return result.list[0].id;
         } catch (error) {
-            // Handle error
             global.log(error);
         }
     }
