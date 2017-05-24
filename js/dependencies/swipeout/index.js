@@ -20,7 +20,7 @@ const SwipeoutBtn = ({
     btn
 }) => {
     const styleSwipeoutBtn = [styles.swipeoutBtn];
-
+debugger;
     //  apply "type" styles (delete || primary || secondary)
     if (btn.type === 'delete') styleSwipeoutBtn.push(styles.colorDelete);
     else if (btn.type === 'primary') styleSwipeoutBtn.push(styles.colorPrimary);

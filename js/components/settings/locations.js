@@ -13,7 +13,7 @@ import {
     Text,
     StatusBar,
     ScrollView,
-    LayoutAnimation
+    TouchableHighlight
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,12 +25,11 @@ import type { Location } from '../../models/view';
 
 import Section from './section';
 import NavigationButtonRow from './navigationbuttonrow';
-import AddLocation from './addlocation';
 
 const renderForecastImage = require('../forecastimage');
 
 type Props = {
-    navigator: any,
+    navigation: any,
     dispatch: any,
     locations: Array < Location >,
     count: number
@@ -39,6 +38,10 @@ type Props = {
 
 class Locations extends Component {
     props:Props;
+
+    static navigationOptions = {
+        title: 'Locations'
+    };
 
     constructor(props:Props) {
         super(props);
@@ -95,9 +98,9 @@ class Locations extends Component {
 
                     <Section style={{marginTop: 36}}>
                         <NavigationButtonRow
-                            text={'Add Location'}
-                            component={AddLocation}
-                            navigator={this.props.navigator}/>
+                            title='Add Location'
+                            routeName='AddLocation'
+                            navigation={this.props.navigation}/>
                     </Section>
                 </ScrollView>
             </View>
