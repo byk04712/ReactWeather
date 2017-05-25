@@ -41,6 +41,10 @@ class AddLocation extends Component {
     props:Props;
     state:State;
 
+    static navigationOptions = {
+        title: 'Add Location'
+    };
+
     constructor(props:Props) {
         super(props);
 
@@ -146,7 +150,7 @@ class AddLocation extends Component {
                 onPress={() => {
                     this.onSearchBarCancelPressed();
                     this.props.dispatch(addLocation(row.name, row.postcode.toString(), row.state));
-                    this.props.navigator.pop();
+                    this.props.navigation.goBack();
                 }
             }>
                 <View style={defaultStyles.navigationButtonRow}>
@@ -223,8 +227,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#f8f8f8',
-        marginTop: 64,
+        backgroundColor: '#f8f8f8'
     },
     searchView: {
         backgroundColor: '#C9C9CE',

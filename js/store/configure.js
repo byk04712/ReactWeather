@@ -1,32 +1,39 @@
-/**
- * @flow
- */
-
 'use strict';
 
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+import {applyMiddleware, createStore} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import {createLogger} from 'redux-logger';
 
 import reducers from '../reducers';
-import promise from './promise';
+import promiseMiddleware from './promise';
 
-var isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
-var logger = createLogger({
-  predicate: (getState, action) => isDebuggingInChrome,
-  collapsed: true,
-  duration: true
-});
+const middlewares = [
+    thunkMiddleware,
+    promiseMiddleware
+];
 
-var store = applyMiddleware(thunk, promise, logger)(createStore)(reducers);
 
-function configureStore() {
-  if (isDebuggingInChrome) {
-    window.store = store;
-  }
+const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
-  return store;
+
+if (isDebuggingInChrome) {
+    const loggerMiddleware = createLogger({
+        predicate: (getState, action) => isDebuggingInChrome,
+        collapsed: true,
+        duration: true
+    });
+    middlewares.push(loggerMiddleware)
 }
 
-module.exports = configureStore;
+
+export default function configureStore() {
+
+    const store = applyMiddleware(...middlewares)(createStore)(reducers);
+
+    if (isDebuggingInChrome) {
+        window.store = store;
+    }
+
+    return store;
+}

@@ -8,20 +8,20 @@ import Realm from 'realm';
 import Schema from './schema';
 
 function configureRealm() {
-  var schema = new Schema();
+    var schema = new Schema();
+    var currentVersion = Realm.schemaVersion(Realm.defaultPath);
 
-  var next = Realm.schemaVersion(Realm.defaultPath);
-  if (next > 0) {
-    while (next < schema.schemas.length) {
-      var migratedSchema = schema.schemas[next++];
-      var migratedRealm = new Realm(migratedSchema);
-      migratedRealm.close();
+    if (currentVersion > 0) {
+        while (currentVersion < schema.schemas.length) {
+            var migratedSchema = schema.schemas[currentVersion++];
+            var migratedRealm = new Realm(migratedSchema);
+            migratedRealm.close();
+        }
     }
-  }
 
-  var current = schema.current();
-  var realm = new Realm(current);
-  realm.close();
+    var current = schema.current();
+    var realm = new Realm(current);
+    realm.close();
 }
 
 module.exports = configureRealm;

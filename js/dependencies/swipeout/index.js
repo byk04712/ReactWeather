@@ -12,40 +12,38 @@ const SwipeoutBtn = ({
     component = null,
     underlayColor = null,
     height = 0,
-    key = null,
     onPress = null,
     text = 'Click me',
     type = '',
-    width = 0,
-    btn
+    width = 0
 }) => {
     const styleSwipeoutBtn = [styles.swipeoutBtn];
-debugger;
+
     //  apply "type" styles (delete || primary || secondary)
-    if (btn.type === 'delete') styleSwipeoutBtn.push(styles.colorDelete);
-    else if (btn.type === 'primary') styleSwipeoutBtn.push(styles.colorPrimary);
-    else if (btn.type === 'secondary') styleSwipeoutBtn.push(styles.colorSecondary);
+    if (type === 'delete') styleSwipeoutBtn.push(styles.colorDelete);
+    else if (type === 'primary') styleSwipeoutBtn.push(styles.colorPrimary);
+    else if (type === 'secondary') styleSwipeoutBtn.push(styles.colorSecondary);
 
     //  apply background color
-    if (btn.backgroundColor) styleSwipeoutBtn.push([{ backgroundColor: btn.backgroundColor }]);
+    if (backgroundColor) styleSwipeoutBtn.push([{ backgroundColor: backgroundColor }]);
 
     styleSwipeoutBtn.push([{
-        height: btn.height,
-        width: btn.width
+        height: height,
+        width: width
     }]);
 
     const styleSwipeoutBtnComponent = [];
 
     //  set button dimensions
     styleSwipeoutBtnComponent.push([{
-        height: btn.height,
-        width: btn.width
+        height: height,
+        width: width
     }]);
 
     const styleSwipeoutBtnText = [styles.swipeoutBtnText];
 
     //  apply text color
-    if (btn.color) styleSwipeoutBtnText.push([{ color: btn.color }]);
+    if (color) styleSwipeoutBtnText.push([{ color: color }]);
 
     return (
         <TouchableHighlight
@@ -53,9 +51,9 @@ debugger;
             style={styles.swipeoutBtnTouchable}
             underlayColor={underlayColor}>
             <View style={styleSwipeoutBtn}>
-                {btn.component ?
-                    <View style={styleSwipeoutBtnComponent}>{btn.component}</View>
-                    : <Text style={styleSwipeoutBtnText}>{btn.text}</Text>
+                {component ?
+                    <View style={styleSwipeoutBtnComponent}>{component}</View>
+                    : <Text style={styleSwipeoutBtnText}>{text}</Text>
                 }
             </View>
         </TouchableHighlight>

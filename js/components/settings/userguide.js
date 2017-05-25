@@ -4,21 +4,32 @@
 
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  StyleSheet,
-  View,
-  Text
+    StyleSheet,
+    View,
+    Text
 } from 'react-native';
 
-class UserGuide extends Component {
-  render() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{fontSize: 44}}>User Guide</Text>
-      </View>
-    );
-  }
-}
+const UserGuide = () => (
+    <View style={styles.container}>
+        <Text style={styles.text}>User Guide</Text>
+    </View>
+);
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    text: {
+        fontSize: 44
+    }
+});
+
+UserGuide.navigationOptions = {
+    title: 'User Guide'
+};
 
 module.exports = UserGuide;

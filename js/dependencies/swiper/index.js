@@ -21,13 +21,13 @@ import ReactNative, {
 // throwing an exception.
 import TimerMixin from 'react-timer-mixin'
 
-let { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window');
 
 /**
  * Default styles
  * @type {StyleSheetPropType}
  */
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
     position: 'relative',
@@ -511,25 +511,25 @@ module.exports = React.createClass({
    * @return {object} react-dom
    */
   render() {
-    let state = this.state
-    let props = this.props
-    let children = props.children
-    let index = state.index
-    let total = state.total
-    let loop = props.loop
-    let dir = state.dir
-    let key = 0
+    let state = this.state;
+    let props = this.props;
+    let children = props.children;
+    let index = state.index;
+    let total = state.total;
+    let loop = props.loop;
+    let dir = state.dir;
+    let key = 0;
 
-    let pages = []
+    let pages = [];
     let pageStyle = [{width: state.width, height: state.height}, styles.slide]
 
     // For make infinite at least total > 1
     if(total > 1) {
 
       // Re-design a loop model for avoid img flickering
-      pages = Object.keys(children)
+      pages = Object.keys(children);
       if(loop) {
-        pages.unshift(total - 1)
+        pages.unshift(total - 1);
         pages.push(0)
       }
 

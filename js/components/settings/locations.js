@@ -58,7 +58,6 @@ class Locations extends Component {
             var low = item.observation ? item.observation.low : "-";
             var high = item.observation ? item.observation.high : "-";
             var icon = item.observation ? renderForecastImage(item.observation.icon, 20, 20) : null;
-
             return (
                 <Swipeout
                     key={item.openWeatherId}
@@ -66,6 +65,7 @@ class Locations extends Component {
                     right={[
                         {
                             text: 'Delete',
+                            type: 'delete',
                             backgroundColor: '#FF3B30',
                             onPress: () => {
                                 this.props.dispatch(deleteLocation(item.openWeatherId))
