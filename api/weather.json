@@ -1,42 +1,108 @@
 {
-    "coord": {
-        "lon": 149.11,
-        "lat": -35.22
+    "sk": { /*当前实况天气*/
+        "temp": "20",   /*当前温度*/
+        "wind_direction": "南风", /*当前风向*/
+        "wind_strength": "3级",  /*当前风力*/
+        "humidity": "42%",  /*当前湿度*/
+        "time": "23:31" /*更新时间*/
     },
-    "weather": [
-        {
-            "id": 804,
-            "main": "Clouds",
-            "description": "overcast clouds",
-            "icon": "04d"
+    "today": {
+        "temperature": "15℃~31℃",   /*今日温度*/
+        "weather": "晴", /*今日天气*/
+        "weather_id": { /*天气唯一标识*/
+            "fa": "00", /*天气标识00：晴*/
+            "fb": "53"  /*天气标识53：霾 如果fa不等于fb，说明是组合天气*/
+        },
+        "wind": "北风微风",
+        "week": "星期四",
+        "city": "北京",
+        "date_y": "2017年05月25日",
+        "dressing_index": "热",  /*穿衣指数*/
+        "dressing_advice": "天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装。",    /*穿衣建议*/
+        "uv_index": "很强",   /*紫外线强度*/
+        "comfort_index": "",    /*舒适度指数*/
+        "wash_index": "较适宜",    /*洗车指数*/
+        "travel_index": "较不宜",  /*旅游指数*/
+        "exercise_index": "较不宜",    /*晨练指数*/
+        "drying_index": ""  /*干燥指数*/
+    },
+    "future": { /*未来几天天气*/
+        "day_20170525": {
+            "temperature": "15℃~31℃",
+            "weather": "晴",
+            "weather_id": {
+                "fa": "00",
+                "fb": "00"
+            },
+            "wind": "北风微风",
+            "week": "星期四",
+            "date": "20170525"
+        },
+        "day_20170526": {
+            "temperature": "17℃~31℃",
+            "weather": "晴",
+            "weather_id": {
+                "fa": "00",
+                "fb": "00"
+            },
+            "wind": "北风微风",
+            "week": "星期五",
+            "date": "20170526"
+        },
+        "day_20170527": {
+            "temperature": "21℃~34℃",
+            "weather": "晴",
+            "weather_id": {
+                "fa": "00",
+                "fb": "00"
+            },
+            "wind": "西北风微风",
+            "week": "星期六",
+            "date": "20170527"
+        },
+        "day_20170528": {
+            "temperature": "22℃~35℃",
+            "weather": "多云转阴",
+            "weather_id": {
+                "fa": "01",
+                "fb": "02"
+            },
+            "wind": "北风3-4 级",
+            "week": "星期日",
+            "date": "20170528"
+        },
+        "day_20170529": {
+            "temperature": "18℃~27℃",
+            "weather": "阴转多云",
+            "weather_id": {
+                "fa": "02",
+                "fb": "01"
+            },
+            "wind": "西北风微风",
+            "week": "星期一",
+            "date": "20170529"
+        },
+        "day_20170530": {
+            "temperature": "17℃~31℃",
+            "weather": "晴",
+            "weather_id": {
+                "fa": "00",
+                "fb": "00"
+            },
+            "wind": "北风微风",
+            "week": "星期二",
+            "date": "20170530"
+        },
+        "day_20170531": {
+            "temperature": "17℃~31℃",
+            "weather": "晴",
+            "weather_id": {
+                "fa": "00",
+                "fb": "00"
+            },
+            "wind": "北风微风",
+            "week": "星期三",
+            "date": "20170531"
         }
-    ],
-    "base": "stations",
-    "main": {
-        "temp": 21.34,
-        "pressure": 1016,
-        "humidity": 88,
-        "temp_min": 19,
-        "temp_max": 24
-    },
-    "visibility": 16093,
-    "wind": {
-        "speed": 2.6,
-        "deg": 200
-    },
-    "clouds": {
-        "all": 90
-    },
-    "dt": 1463812680,
-    "sys": {
-        "type": 1,
-        "id": 1688,
-        "message": 0.014,
-        "country": "AU",
-        "sunrise": 1463777765,
-        "sunset": 1463814240
-    },
-    "id": 6619483,
-    "name": "Kaleen",
-    "cod": 200
+    }
 }

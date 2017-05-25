@@ -4,19 +4,18 @@
 
 'use strict';
 
-import type {Action} from './types';
+import { ActionTypes } from './types';
 
-import WeatherService from '../services/weather';
-const service = new WeatherService();
+import * as WeatherService from '../services/weather';
 
 const maxAgeInSeconds = (10 * 60); // 10 minutes
 
 function getAllWeather() {
     return (dispatch: any) => {
-        service.getAllWeather(false).then(
+        WeatherService.getAllWeather(false).then(
             (result) => {
                 dispatch({
-                    type: 'WEATHER_GET_ALL',
+                    type: ActionTypes.WEATHER_GET_ALL,
                     data: result
                 });
 
@@ -32,9 +31,9 @@ function getAllWeather() {
 }
 
 async function forceWeatherUpdate() {
-    var result = await service.getAllWeather(true);
+    var result = await WeatherService.getAllWeather(true);
     return {
-        type: 'WEATHER_GET_ALL',
+        type: ActionTypes.WEATHER_GET_ALL,
         data: result
     };
 }
@@ -45,13 +44,13 @@ function getAgeInSeconds(freshness: Date) {
 
 function setWeatherLoading() {
     return {
-        type: 'WEATHER_SET_LOADING'
+        type: ActionTypes.WEATHER_SET_LOADING
     };
 }
 
 function setWeatherRefreshing() {
     return {
-        type: 'WEATHER_SET_REFRESHING'
+        type: ActionTypes.WEATHER_SET_REFRESHING
     };
 }
 

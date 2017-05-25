@@ -1,16 +1,12 @@
-/**
- * @flow
- */
-
 'use strict';
 
-import React, {Component} from 'react';
-import {Provider} from 'react-redux';
-import App from './app';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import App from './navigators/application';
 
 import configureRealm from './realm/configure';
 import configureStore from './store/configure';
-import {setWeatherLoading, initaliseLocations} from './actions';
+import { setWeatherLoading, initaliseLocations } from './actions';
 
 type State = {
     store: any;

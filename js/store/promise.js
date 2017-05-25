@@ -1,7 +1,3 @@
-/**
- * @flow
- */
-
 'use strict';
 
 function warn(error) {
