@@ -9,7 +9,7 @@ import configureStore from './store/configure';
 import { setWeatherLoading, initaliseLocations } from './actions';
 
 type State = {
-    store: any;
+    store: any
 };
 
 function setup() {

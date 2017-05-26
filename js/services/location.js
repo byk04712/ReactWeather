@@ -16,28 +16,29 @@ const defaultLocations = [
 
 
 export function initialise() {
-    const context = realm.current();
-    try {
-        const locations = context.objects('Location');
-debugger;
-        if (locations.length > 0) {
-            return;
-        }
-
-        for (var i = 0; i < defaultLocations.length; i++) {
-            const location = defaultLocations[i];
-            context.write(() => {
-                context.create('Location', {
-                    id: location.id,
-                    province: location.province,
-                    city: location.city,
-                    district: location.district
+    return new Promise(resolve => {
+        const context = realm.current();
+        try {
+            const locations = context.objects('Location');
+            if (locations.length > 0) {
+                return;
+            }
+            for (var i = 0; i < defaultLocations.length; i++) {
+                const location = defaultLocations[i];
+                context.write(() => {
+                    context.create('Location', {
+                        id: location.id,
+                        province: location.province,
+                        city: location.city,
+                        district: location.district
+                    });
                 });
-            });
+            }
+        } finally {
+            context.close();
+            resolve();
         }
-    } finally {
-        context.close();
-    }
+    });
 }
 
 export function getAllLocations() {

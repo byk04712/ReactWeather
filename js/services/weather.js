@@ -5,9 +5,9 @@
 'use strict';
 
 import realm from '../realm';
-import {weatherApiKey, weatherApiUrl} from '../config';
-import type {WeatherModel, WeatherObservation, WeatherForecast} from '../models/view';
-import {isDebugData} from '../config';
+import { weatherApiKey, weatherApiUrl } from '../config';
+import { WeatherModel, WeatherObservation, WeatherForecast } from '../models/view';
+import { isDebugData } from '../config';
 
 import dateFormat from 'dateformat';
 
@@ -15,34 +15,63 @@ import TestDataService from '../services/testdata';
 const testdata = new TestDataService();
 
 
-export async function getAllWeather(forceUpdate: bool) {
-    if (isDebugData) {
-        return testdata.getAll();
-    }
-
-    var data = [];
-    let context = realm.current();
-    try {
-        let locations = context.objects('Location');
-
-        for (var i = 0; i < locations.length; i++) {
-            var location = locations[i];
-
-            var result;
-            if (forceUpdate === false && location.weather) {
-                result = this.getWeatherFromContext(location);
-            } else {
-                result = await this.getWeatherFromApiAsync(location.openWeatherId);
-                this.updateWeatherInContext(location, result, context)
-            }
-
-            data.push(result);
+/**
+ * 获取所有天气预告
+ * @returns {*}
+ */
+export function getAllWeather() {
+    return new Promise(async(resolve) => {
+        if (isDebugData) {
+            resolve(testdata.getAll());
+            return;
         }
-    } finally {
-        context.close();
-    }
+        const data = [];
+        const context = realm.current();
+        try {
+            let locations = context.objects('Location');
+            for (let i = 0; i < locations.length; i++) {
+                const location = locations[i];
 
-    return data;
+                // 循环获取城市的天气
+                console.log(`${location.id} - ${location.province} - ${location.city} - ${location.district}`);
+                const weather = await getWeatherByCity(location.city);
+
+                //id: 'int',
+                //    province: 'string',
+                //    city: 'string',
+                //    district: 'string',
+                //    today: 'Today',
+                //    latest: 'Latest',
+                //    future: {
+                //    type: 'list',
+                //        objectType: 'Forecast'
+                //}
+
+                //var result;
+                //if (forceUpdate === false && location.weather) {
+                //    result = this.getWeatherFromContext(location);
+                //} else {
+                //    result = await this.getWeatherFromApiAsync(location.openWeatherId);
+                //    this.updateWeatherInContext(location, result, context)
+                //}
+                //
+                //data.push(result);
+            }
+        } finally {
+            context.close();
+        }
+        resolve(data);
+    });
+}
+
+/**
+ * 根据城市获取天气信息
+ * @param city
+ * @returns {string}
+ */
+export function getWeatherByCity(city: string) {
+    console.log('根据城市获取天气', city);
+    return '天气';
 }
 
 export function getWeatherFromContext(location: any) {

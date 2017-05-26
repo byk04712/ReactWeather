@@ -8,23 +8,28 @@ import { ActionTypes } from './types';
 
 import * as WeatherService from '../services/weather';
 
-const maxAgeInSeconds = (10 * 60); // 10 minutes
 
+/**
+ * 获取所有天气
+ * @returns {Function}
+ */
 function getAllWeather() {
     return (dispatch: any) => {
         WeatherService.getAllWeather(false).then(
             (result) => {
-                dispatch({
-                    type: ActionTypes.WEATHER_GET_ALL,
-                    data: result
-                });
-
-                var dates = result.map((item) => item.freshness);
-                var freshness = new Date(Math.min(...dates));
-                if (getAgeInSeconds(freshness) > maxAgeInSeconds) {
-                    dispatch(setWeatherRefreshing());
-                    dispatch(forceWeatherUpdate());
-                }
+                console.log('result = ', result);
+                debugger;
+                //dispatch({
+                //    type: ActionTypes.WEATHER_GET_ALL,
+                //    data: result
+                //});
+                //
+                //var dates = result.map((item) => item.freshness);
+                //var freshness = new Date(Math.min(...dates));
+                //if (getAgeInSeconds(freshness) > maxAgeInSeconds) {
+                //    dispatch(setWeatherRefreshing());
+                //    dispatch(forceWeatherUpdate());
+                //}
             }
         );
     };
